@@ -1,28 +1,23 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <b-navbar toggleable="lg" type="dark" variant="primary" fixed>
+      <b-navbar-nav class="mx-auto">
+        <b-navbar-brand href="#">MusicMash</b-navbar-brand>
+      </b-navbar-nav>
+    </b-navbar>
+    <div class="d-flex align-items-center">
+      <div class="container text-center mt-4">
+        <Poll />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Poll: () => import('./components/Poll.vue')
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
