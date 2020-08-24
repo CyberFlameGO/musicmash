@@ -4,8 +4,9 @@ const express  = require('express'),
       cors     = require('cors'),
       app      = express()
 
-const songsRouter = require('./routers/songs')
-const seedDB = require('./seed')
+const songsRouter     = require('./routers/songs'),
+      errorMiddleware = require('./middleware/error'),
+      seedDB          = require('./seed')
 
 dotenv.config()
 mongoose.connect(
@@ -16,6 +17,7 @@ mongoose.connect(
   }
 )
 .then(() => {
+  // Before starting server for the first time, uncomment the line below
   // seedDB()
   app.listen(process.env.PORT)
 })
@@ -25,3 +27,4 @@ app.use(cors())
 app.use(express.json())
 
 app.use('/songs', songsRouter)
+app.use(errorMiddleware)
