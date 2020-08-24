@@ -27,6 +27,8 @@
 </template>
 
 <script>
+import environment from '../environment/index'
+
 export default {
   name: 'Poll',
   data () {
@@ -39,7 +41,7 @@ export default {
     async createPoll (songsToExclude) {
       const qs = songsToExclude ? `?exclude=${songsToExclude.join(',')}` : ''
       const data = await (
-        await fetch(`http://localhost:5000/songs/poll${qs}`)
+        await fetch(`${environment.API_URL}/poll${qs}`)
       ).json()
 
       this.songs = data
@@ -66,7 +68,7 @@ export default {
       )
 
       await fetch(
-        'http://localhost:5000/songs/vote',
+        `${environment.API_URL}/vote`,
         {
           method: 'POST',
           headers: {
